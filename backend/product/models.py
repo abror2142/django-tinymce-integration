@@ -8,4 +8,4 @@ class Product(models.Model):
     desc = HTMLField()
 
     def __str__(self):
-        return self.name
+        return self.product_name

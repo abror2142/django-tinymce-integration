@@ -5,11 +5,35 @@ from django.http.response import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 
+from django.db.models.signals import pre_save, post_save
+from django.dispatch import receiver
 import os
-
+import re
 from .forms import ProductForm
 from .models import Product
-# Create your views here.
+
+
+
+def parse_image_names(html):
+    regex = r'<img[^>]+src=["\'](.*?)["\']' # thank you ChatGPT
+    return re.findall(regex, html)
+ 
+
+@receiver(pre_save, sender=Product)
+def my_handler(sender, signal, instance, **kwargs):
+    # instance is what will be saved in the Database
+    # product is the object before this saving
+    product = Product.objects.get(pk=instance.pk)
+    # things to be done to delete images that are deleted from editor:
+        # make map of previous and instance image names:
+        # compare them
+        # delete if previos image list has items that are not present in the new one 
+    prev_images = parse_image_names(product.desc)
+    current_images = parse_image_names(instance.desc)
+    for img in prev_images:
+        if img not in current_images:
+            img=img[1:]
+            os.remove(img)
 
 
 def all_products(request):
@@ -44,6 +68,7 @@ def update_product(request, pk):
 def product(request, pk):
     product = Product.objects.get(pk=pk)
     return render(request, "product.html", {"product": product})
+
 
 @csrf_exempt
 def upload_image(request, pk=None):

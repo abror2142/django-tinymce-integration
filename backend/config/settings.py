@@ -167,7 +167,7 @@ TINYMCE_DEFAULT_CONFIG = {
         input.click();
     }""",
     "content_style": "body { font-family:Roboto,Helvetica,Arial,sans-serif; font-size:14px }",
-    "images_upload_url": "upload-image/",
+    "images_upload_url": "/product/upload-image/",
     "document_base_url:": "http://localhost:8000/",
     "relative_urls": False
 }
