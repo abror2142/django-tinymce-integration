@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{ form.media }}
+{% endblock head %}
+
+{% block main %}
+<form method='POST'>
+    {% csrf_token %}
+    {{ form|safe }}
+    <button>Save</button>
+</form>
+{% endblock main %}
