@@ -6,9 +6,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 
 from django.db.models.signals import pre_save, post_save
-from django.dispatch import receiver
 import os
-import re
+import uuid
 from .forms import ProductForm
 from .models import Product
 
@@ -52,13 +51,23 @@ def upload_image(request, pk=None):
     if request.method != "POST":
         return JsonResponse({'Error Message': "Wrong request"})
 
-    # If it's not series and not article, handle it differently
 
+    # If it's not series and not article, handle it differently
     file_obj = request.FILES['file']
-    print(file_obj)
+
     file_name_suffix = file_obj.name.split(".")[-1]
     if file_name_suffix not in ["avif", "jpg", "png", "gif", "jpeg"]:
         return JsonResponse({"Error Message": f"Wrong file suffix ({file_name_suffix}), supported are .jpg, .png, .gif, .jpeg"})
+
+    # Generating uuid for image name
+    id = uuid.uuid4()
+    file_obj.name = str(id) + "." + file_name_suffix
+
+    # Creating /media/product folder
+    if not os.path.exists(settings.MEDIA_ROOT):
+        os.mkdir(settings.MEDIA_ROOT)
+        if not os.path.exists(os.path.join(settings.MEDIA_ROOT, 'product')):
+            os.mkdir(os.path.join(settings.MEDIA_ROOT, 'product'))
 
     file_path = os.path.join(settings.MEDIA_ROOT, 'product', file_obj.name)
 
