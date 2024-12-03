@@ -15,7 +15,9 @@ This Project includes features:
   - Image deletion after removing the image from the editor(during updates).
 
 ** I do not own anything in this repo. Thanks to people who write tutorials which I used extensively.
+
 ** Basically, I tried to connect them to test and use them for personal projects.
+
 ** FEEL FREE to give feedback :)
 
 ## How to RUN?
@@ -40,5 +42,7 @@ And you can  check the upload_image function inside the app-views which is used 
 
 Django Signal is used to delete unnecessary images programmatically(inside `signals.py`).
 
-### Thank you. FEEL FREE to fork, pull request or report an issue. 
-### Happy Coding :)
+## Last but not least
+
+Thank you. FEEL FREE to fork, pull a request or report an issue. 
+Happy Coding :)
