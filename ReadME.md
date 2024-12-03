@@ -15,8 +15,30 @@ This Project includes features:
   - Image deletion after removing the image from the editor(during updates).
 
 ** I do not own anything in this repo. Thanks to people who write tutorials which I used extensively.
-** Basically, I tried to connect them to test and use it for personal projects.
+** Basically, I tried to connect them to test and use them for personal projects.
 ** FEEL FREE to give feedback :)
 
 ## How to RUN?
 
+Steps to follow:
+ 1. **RENAME** the .env-developer to .env
+ 2. **POPULATE** .env file with correct values
+ 3. **MAKE** virtual env to avoid dependency conflicts
+ 4. **INSTALL** libraries in backend/requirements.txt file
+ 5. **ACTIVATE** environment
+ 6. **RUN** `python manage.py runserver`
+ 7. **GO TO** http://localhost:8000 to check the result
+ 8. **CHECK** admin page of the website using http://localhost:8000/admin/
+
+## What to expect?
+
+You will have a TinyMCE WYSIWYG editor working correctly(partly of course) inside Django Project.
+
+You can explore `settings.py` for `django-tinymce` configuration
+
+And you can  check the upload_image function inside the app-views which is used to manage image uploads in the TinyMCE editor.
+
+Django Signal is used to delete unnecessary images programmatically(inside `signals.py`).
+
+### Thank you. FEEL FREE to fork, pull request or report an issue. 
+### Happy Coding :)
