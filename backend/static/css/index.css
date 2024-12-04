@@ -73,7 +73,7 @@ body {
 .form {
     display: flex;
     flex-direction: column;
-    gap: 1.5em;
+    gap: 1em;
     background-color: #F0F0F0;
     padding: 2em 1.5em;
 }
@@ -81,10 +81,11 @@ body {
 .form-field {
     display: flex;
     flex-direction: column;
-    gap: .5em;
+    gap: .3em;
 }
 
-.product-name {
+.product-name,
+.product-price {
     height: 40px;
     border: none;
     font-size: 16px;
@@ -101,7 +102,9 @@ body {
     height: 40px;
     width: 150px;
     font-size: 18px;
-    background-color: blue;
+    background-color: green;
+    border-radius: 5px;
+    border: none;
     color: #ffffff;
     outline: none;
 }

@@ -6,7 +6,7 @@
     {% if products %}
         {% for product in products %}
             <a href="{% url "product" product.id %}" class="product">
-                {{product.product_name}}
+                {{product.name}}
             </a>
         {% endfor %}
     {% else %}

@@ -9,5 +9,6 @@ class ProductForm(forms.ModelForm):
         model = Product
         fields = '__all__'
         widgets = {
-            "product_name": forms.widgets.TextInput(attrs={"class": "product-name", "id": "productNameId"})
+            "name": forms.widgets.TextInput(attrs={"class": "product-name", "id": "productNameId"}),
+            "price": forms.widgets.NumberInput(attrs={"class": "product-price", "id": "productPriceId"})
         }

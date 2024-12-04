@@ -9,12 +9,17 @@
     {% csrf_token %}
     <div class="form-field">
         <label class="form-label" for="productNameId">Product Name:</label>
-        {{ form.product_name }}
+        {{ form.name }}
+    </div>
+
+    <div class="form-field">
+        <label class="form-label" for="productPriceId">Price:</label>
+        {{ form.price }}
     </div>
 
     <div class="form-field">
         <label class="form-label">Description</label>
-        {{form.desc|safe}}
+        {{form.description|safe}}
     </div>
     <div>
         <button class="form-submit-btn">Save</button>
