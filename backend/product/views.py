@@ -12,47 +12,40 @@ from .forms import ProductForm
 from .models import Product
 
 
-def all_products(request):
-    state = {
-        'products': Product.objects.all(),
-    }
-    return render(request, 'products.html', state)
+def product_list(request: HttpRequest):
+    products = Product.objects.all(),
+    return render(request, 'product-list.html', {"products": products})
 
 
-def create_product(request):
+def product(request: HttpRequest, pk: int):
+    product = get_object_or_404(Product, pk=pk)
+    return render(request, "product.html", {"product": product})
+
+
+def create_product(request: HttpRequest):
     form = ProductForm()
     if request.method == 'POST':
         form = ProductForm(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponse("Saved!")
-    state = {
-        "form": form
-    }
-    return render(request, 'create-product.html', state)
+    return render(request, 'product-form.html', {"form": form})
 
 
-def update_product(request, pk):
-    instance = Product.objects.get(pk=pk)
+def update_product(request: HttpRequest, pk: int):
+    instance = get_object_or_404(Product, pk=pk)
     form = ProductForm(request.POST or None, instance=instance)
     if form.is_valid():
         form.save()
         return HttpResponse("Updated!")
-    return render(request, 'update-product.html', {'form': form})
-
-
-def product(request, pk):
-    product = Product.objects.get(pk=pk)
-    return render(request, "product.html", {"product": product})
+    return render(request, 'product-form.html', {'form': form})
 
 
 @csrf_exempt
-def upload_image(request, pk=None):
+def upload_image(request):
     if request.method != "POST":
         return JsonResponse({'Error Message': "Wrong request"})
-
-
-    # If it's not series and not article, handle it differently
+    
     file_obj = request.FILES['file']
 
     file_name_suffix = file_obj.name.split(".")[-1]
@@ -63,13 +56,15 @@ def upload_image(request, pk=None):
     id = uuid.uuid4()
     file_obj.name = str(id) + "." + file_name_suffix
 
-    # Creating /media/product folder
-    if not os.path.exists(settings.MEDIA_ROOT):
-        os.mkdir(settings.MEDIA_ROOT)
-        if not os.path.exists(os.path.join(settings.MEDIA_ROOT, 'product')):
-            os.mkdir(os.path.join(settings.MEDIA_ROOT, 'product'))
+    path = os.path.join(settings.MEDIA_ROOT, 'product')
 
-    file_path = os.path.join(settings.MEDIA_ROOT, 'product', file_obj.name)
+    # Creating /media/product folder if it doesn't exist
+    if not os.path.exists(path):
+        os.makedirs(path)
+
+    file_path = os.path.join(path, file_obj.name)
+
+    file_url = f'{settings.MEDIA_URL}/product/{file_obj.name}'
 
     with open(file_path, 'wb+') as f:
         for chunk in file_obj.chunks():
@@ -77,5 +72,5 @@ def upload_image(request, pk=None):
 
         return JsonResponse({
             'message': 'Image uploaded successfully',
-            'location': os.path.join(settings.MEDIA_URL, 'product', file_obj.name)
+            'location': file_url
         })

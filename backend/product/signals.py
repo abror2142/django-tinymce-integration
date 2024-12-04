@@ -7,7 +7,6 @@ from .utils import parse_image_path_from_html, delete_file
 
 @receiver(pre_save, sender=Product)
 def my_handler(sender, signal, instance, **kwargs):
-    print("SIGNALLLLLL")
     # instance is what will be saved in the Database
     # product is the object before this saving
     if instance.pk is not None:
