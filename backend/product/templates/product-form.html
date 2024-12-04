@@ -5,9 +5,19 @@
 {% endblock head %}
 
 {% block main %}
-<form method='POST'>
+<form method='POST' class="form">
     {% csrf_token %}
-    {{ form|safe }}
-    <button>Save</button>
+    <div class="form-field">
+        <label class="form-label" for="productNameId">Product Name:</label>
+        {{ form.product_name }}
+    </div>
+
+    <div class="form-field">
+        <label class="form-label">Description</label>
+        {{form.desc|safe}}
+    </div>
+    <div>
+        <button class="form-submit-btn">Save</button>
+    </div>
 </form>
 {% endblock main %}

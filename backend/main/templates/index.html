@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main %}
+<div class="main-page">
+    {% if products %}
+        {% for product in products %}
+            <a href="{% url "product" product.id %}" class="product">
+                {{product.product_name}}
+            </a>
+        {% endfor %}
+    {% else %}
+        <div class="oops-box">
+            <img src="{% static 'images/oops.webp' %}" class="oops-image"/>
+                <p class="oops-text">
+                    Ooops! You don't have any product instance to view.
+                </p>
+        </div>
+    {% endif %}
+
+    <a href="{% url "create_product" %}" class="create-button">
+        <p class="create-text">
+            Add a new Product
+        </p>
+        <i class="fa-solid fa-plus" class="plus-icon"></i>
+    </a>
+            
+</div>
+{% endblock main %}
+

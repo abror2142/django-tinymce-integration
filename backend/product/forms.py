@@ -8,3 +8,6 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = '__all__'
+        widgets = {
+            "product_name": forms.widgets.TextInput(attrs={"class": "product-name", "id": "productNameId"})
+        }

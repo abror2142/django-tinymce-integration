@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,13 +8,13 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
+        <script src="https://kit.fontawesome.com/9f05e44f8a.js" crossorigin="anonymous"></script>
         {% block head %}{% endblock head %}
     </head>
     <body>
-        
-        {% block main %}{% endblock main %}
-        
-        <script src="" async defer></script>
+        <main class="main">
+            {% block main %} {% endblock main %}
+        </main>
     </body>
 </html>
