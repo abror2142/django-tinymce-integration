@@ -175,6 +175,7 @@ body {
 }
 
 .product-page-content {
+    min-width: 600px;
     display: flex;
     flex-direction: column;
     gap: 1em;

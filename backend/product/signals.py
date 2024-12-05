@@ -30,7 +30,7 @@ def my_handler(instance, **kwargs):
 @receiver(post_delete, sender=Product)
 def product_image_delete(origin, **kwargs):
     """
-        origin is the product which has been deleted from database
+        origin - is the product which has been deleted from database
         ** Deleting object doesn't delete image files associated with that
 
         Things to be done to clear the image files:
