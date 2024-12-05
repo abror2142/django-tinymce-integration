@@ -1,4 +1,4 @@
-# Django TinyMCE Integration using django-tinymce!
+# Integration of WYSIWYG Editor with Django using django-tinymce!
 
 ## About the Project:
 
@@ -28,7 +28,7 @@ Steps to follow:
  3. **MAKE** virtual env to avoid dependency conflicts
  4. **INSTALL** libraries in backend/requirements.txt file
  5. **ACTIVATE** environment
- 6. **RUN** `python manage.py runserver`
+ 6. **RUN** `python manage.py migrate` and `python manage.py runserver`
  7. **GO TO** http://localhost:8000 to check the result
  8. **CHECK** admin page of the website using http://localhost:8000/admin/
 
