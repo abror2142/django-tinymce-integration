@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
 from django.http.response import JsonResponse
@@ -28,8 +28,13 @@ def create_product(request: HttpRequest):
         form = ProductForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse("Saved!")
-    return render(request, 'product-form.html', {"form": form})
+            return redirect('index')
+    state = {
+        "form": form,
+        "button_text": "Add",
+        "title": "Add a product"
+    }
+    return render(request, 'product-form.html', state)
 
 
 def update_product(request: HttpRequest, pk: int):
@@ -37,8 +42,13 @@ def update_product(request: HttpRequest, pk: int):
     form = ProductForm(request.POST or None, instance=instance)
     if form.is_valid():
         form.save()
-        return HttpResponse("Updated!")
-    return render(request, 'product-form.html', {'form': form})
+        return redirect('index')
+    state = {
+        "form": form,
+        "button_text": "Update",
+        "title": "Update a product"
+    }
+    return render(request, 'product-form.html', state)
 
 
 @csrf_exempt

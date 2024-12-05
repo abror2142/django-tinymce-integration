@@ -7,13 +7,14 @@
 {% block main %}
 <form method='POST' class="form">
     {% csrf_token %}
+    <h2 class="form-title">{{title}}</h2>
     <div class="form-field">
-        <label class="form-label" for="productNameId">Product Name:</label>
+        <label class="form-label" for="productNameId">Product Name</label>
         {{ form.name }}
     </div>
 
     <div class="form-field">
-        <label class="form-label" for="productPriceId">Price:</label>
+        <label class="form-label" for="productPriceId">Price</label>
         {{ form.price }}
     </div>
 
@@ -21,8 +22,8 @@
         <label class="form-label">Description</label>
         {{form.description|safe}}
     </div>
-    <div>
-        <button class="form-submit-btn">Save</button>
+    <div class="form-submit-btn-box">
+        <button class="form-submit-btn">{{button_text}}</button>
     </div>
 </form>
 {% endblock main %}

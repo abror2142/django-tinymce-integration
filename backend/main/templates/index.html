@@ -5,8 +5,20 @@
 <div class="main-page">
     {% if products %}
         {% for product in products %}
-            <a href="{% url "product" product.id %}" class="product">
-                {{product.name}}
+            <a href="{% url "product" product.id %}" >
+            <div class="product">
+                <div>
+                    {{product.name}}
+                </div>
+                <div class="product-customize-box">
+                    <a href="{% url "update_product" product.id %}" class="product-update-icon">
+                        <i class="fa-solid fa-file-pen"></i>
+                    </a>
+                    <a href="{% url "update_product" product.id %}" class="product-delete-icon">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+                </div>
+            </div>
             </a>
         {% endfor %}
     {% else %}
