@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
+from http import HTTPStatus
 from django.http.response import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
@@ -49,6 +50,12 @@ def update_product(request: HttpRequest, pk: int):
         "title": "Update a product"
     }
     return render(request, 'product-form.html', state)
+
+
+def delete_product(request: HttpRequest, pk: int) -> HttpResponse:
+    instance = get_object_or_404(Product, pk=pk)
+    instance.delete()
+    return redirect('index')
 
 
 @csrf_exempt

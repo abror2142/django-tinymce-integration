@@ -180,20 +180,26 @@ body {
     gap: 1em;
 }
 
-.back-button {
+.product-page-action-box {
+    margin-top: 1em;
     position: fixed;
-    width: 40px;
-    height: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.product-page-action-box > a{
+    width: 45px;
+    height: 45px;
     background-color: #F4F4F4;
-    border-radius: 20px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 1em;
     font-size: 20px;
 }
 
-.back-button:hover {
+.product-page-action-box > a:hover {
     background-color: #F8F8F8;
     color: blue;
 }

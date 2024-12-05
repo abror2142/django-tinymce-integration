@@ -19,8 +19,8 @@ def my_handler(instance, **kwargs):
     """
     if instance.pk is not None:
         product = Product.objects.get(pk=instance.pk)
-        prev_images = parse_image_path_from_html(product.desc)
-        current_images = parse_image_path_from_html(instance.desc)
+        prev_images = parse_image_path_from_html(product.description)
+        current_images = parse_image_path_from_html(instance.description)
         for img_path in prev_images:
             if img_path not in current_images:
                 img_path=img_path[1:] # removes first /
@@ -37,7 +37,7 @@ def product_image_delete(origin, **kwargs):
             * Make list of object's image src
             * Delete them one by one.
     """
-    images = parse_image_path_from_html(origin.desc)
+    images = parse_image_path_from_html(origin.description)
     print(images)
     for img_path in images:
         img_path = img_path[1:]

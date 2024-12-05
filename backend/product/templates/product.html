@@ -3,9 +3,19 @@
 {% block main %}
     <div class="product-page">
         <div class="product-page-action">
-            <a href="{% url "index" %}" class="back-button">
-                <i class="fa-solid fa-arrow-left"></i>
-            </a>
+            <div class="product-page-action-box">
+                <a href="{% url "index" %}" class="icon">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+
+                <a href="{% url "update_product" product.id %}" class="icon">
+                    <i class="fa-solid fa-file-pen"></i>
+                </a>
+
+                <a href="{% url "delete_product" product.id %}" class="icon">
+                    <i class="fa-solid fa-trash"></i>
+                </a>
+            </div>
         </div>
         <div class="product-page-content">
             <div class="product-info-box">
